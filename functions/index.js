@@ -42,6 +42,8 @@ function compileRegions(query) {
 
     for (i = 0; i < resortsLength; i++) {
         var name = resorts.skiArea[i].name.__cdata;
+        var id = resorts.skiArea[i]._id;
+
         var region = "undefined";
         var region_lower = "undefined";
 
@@ -60,7 +62,8 @@ function compileRegions(query) {
             jsonresults.push({
                 name: name,
                 website: website,
-                region: region
+                region: region,
+                id: id
             })
         }
     }
@@ -71,7 +74,7 @@ function compileResortList(query) {
     var resorts = skiResorts.skiAreas;
     var resortsLength = skiResorts.skiAreas.skiArea.length;
     var jsonresults = [];
-    
+
     var myRe = "^" + query;
     myRe = myRe.toLowerCase();
 
@@ -94,7 +97,7 @@ function compileResortList(query) {
             jsonresults.push({
                 name: name,
                 website: website,
-                region: region, 
+                region: region,
                 id: id
             })
         }
