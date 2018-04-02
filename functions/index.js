@@ -71,13 +71,14 @@ function compileResortList(query) {
     var resorts = skiResorts.skiAreas;
     var resortsLength = skiResorts.skiAreas.skiArea.length;
     var jsonresults = [];
-
+    
     var myRe = "^" + query;
     myRe = myRe.toLowerCase();
 
     for (i = 0; i < resortsLength; i++) {
         var name = resorts.skiArea[i].name.__cdata;
         var name_lower = name.toLowerCase();
+        var id = resorts.skiArea[i]._id;
         var region = "undefined";
         var website = "#";
 
@@ -86,14 +87,15 @@ function compileResortList(query) {
         }
 
         if (resorts.skiArea[i].officialWebsite) {
-            website = resorts.skiArea[i].officialWebsite.__cdata
+            website = resorts.skiArea[i].officialWebsite.__cdata;
         }
 
         if (name_lower.match(myRe)) {
             jsonresults.push({
                 name: name,
                 website: website,
-                region: region
+                region: region, 
+                id: id
             })
         }
     }

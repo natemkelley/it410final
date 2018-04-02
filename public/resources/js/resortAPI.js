@@ -32,24 +32,22 @@ $(document).ready(function () {
 
 function displayResults(data) {
     console.log(data);
-    var everything;
+
     var table = '<table style="width: 100%">';
     table += "<colgroup><col style='width: 40%;'><col style='width: 25%;'><col style='width: 35%;'></colgroup>"
     table += "<tr><th>Name</th><th>Region</th><th>Official Website</th></tr>";
-    
+
+
     $.each(data, function (i, item) {
+        table += "<tr><td><a href='resorts/" + data[i].id + "'> " + data[i].name + "</a></td>";
+        table += "<td>" + data[i].region + "</td>";
+
         if (data[i].website !== "#") {
             var website = data[i].website;
-            table += "<tr><td><a href='" + website + "'> " + data[i].name + "</a></td>";
-            table += "<td>" + data[i].region + "</td>";
             table += "<td><a href='" + website + "'>" + website + "</a></td></tr>";
         } else {
-            table += "<tr><td>" + data[i].name + "</td>";
-            table += "<td>" + data[i].region + "</td>";
             table += "<td>" + "-" + "</td></tr>";
         }
-
-
     });
 
     table += "</table>";
