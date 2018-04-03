@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <title>Node.Js APIs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
+    <link rel="stylesheet" href="../resources/css/signin.css">
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+</head>
+
+<body>
+    <div class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password">
+
+        <button class="btn btn-lg btn-warning btn-block" id="register" onclick="register()">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" id="signIn" onclick="login();">Sign in</button>
+        <button class="btn btn-lg btn-default btn-block" id="googleSignIn" onclick="googleLogin()" style="width: 100%">Sign in with Google</button>
+    </div>
+
+</body>
+
+<script src="../resources/js/jquery.min.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
+
+</html>
+
+<script>
+    var config = {
+        apiKey: "AIzaSyDVLKV7d3vRqBG4ytmZg6CB29EVKYIH6fg",
+        authDomain: "it410-92a24.firebaseapp.com",
+        databaseURL: "https://it410-92a24.firebaseio.com",
+        projectId: "it410-92a24",
+        storageBucket: "it410-92a24.appspot.com",
+        messagingSenderId: "181931576056"
+    };
+    firebase.initializeApp(config);
+
+    function login() {
+        var email = $('#inputEmail').val();
+        var password = $('#inputPassword').val();
+
+        console.log(email + " " + password)
+
+        event.preventDefault();
+        const auth = firebase.auth();
+        const promise = auth.signInWithEmailAndPassword(email, password);
+        promise.catch(event => console.log(event.message));
+    }
+
+    function register() {
+        var email = $('#inputEmail').val();
+        var password = $('#inputPassword').val();
+
+        event.preventDefault();
+        var auth = firebase.auth();
+        var promise = auth.createUserWithEmailAndPassword(email, password);
+        promise
+            .catch(event => console.log(event.message));
+    }
+
+    function googleLogin() {
+        var googleAuthProvider = new firebase.auth.GoogleAuthProvider;
+        firebase.auth().signInWithPopup(googleAuthProvider)
+            .then(function(data) {
+                firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+                    localStorage.setItem('idToken', idToken);
+                    console.log(idToken);
+                    token = idToken;
+                    console.log(window.location.href + "?tkn=" + token);
+
+                    return token;
+                }).catch(function(error) {
+                    console.error(error);
+                    return;
+                })
+            })
+            .catch(function(error) {
+                console.log(error)
+            })
+    }
+
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        if (firebaseUser) {
+            console.log(firebaseUser);
+            getIDToken();
+        } else {
+            alert("Must log in to view page")
+        }
+    });
+
+    function getIDToken() {
+        firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+            localStorage.setItem('idToken', idToken);
+            console.log(idToken);
+            console.log(window.location.href + "?tkn=" + idToken);
+            window.location = window.location.href + "?tkn=" + idToken;
+
+        }).catch(function(error) {
+            console.error(error);
+        })
+    }
+
+</script>

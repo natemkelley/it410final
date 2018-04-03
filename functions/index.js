@@ -1,9 +1,18 @@
+//firebase
 const functions = require('firebase-functions');
+const firebase = require('firebase-admin');
+const firebaseApp = firebase.initializeApp(
+    functions.config().firebase
+);
+const auth = firebase.auth();
+
+//express
 const express = require('express');
 var request = require('request');
 var fs = require('fs');
 const https = require('https');
 const app = express();
+const url = require('url'); // built-in utility
 
 //Nate specific functions
 var skiResorts = require('./nates_files/ski.json');
@@ -13,17 +22,38 @@ app.get('/resorts/:id', (request, response) => {
     var resorts = skiResorts.skiAreas;
     var resortsLength = skiResorts.skiAreas.skiArea.length;
     var param_id = request.params.id;
+    var idToken = request.query.tkn;
 
-    for (i = 0; i < resortsLength; i++) {
-        if (param_id == resorts.skiArea[i]._id) {
-            response.send(param_id);
-            return
-        }
+    if (!idToken) {
+        response.sendfile('/public/login.html', { root: __dirname + '/..' });
+        return;
     }
 
-    response.send({
-        error: "Could not find " + param_id + " in the resort list"
-    });
+
+    auth.verifyIdToken(idToken)
+        .then(function (decodedToken) {
+            var uid = decodedToken.uid;
+            console.log(uid);
+            for (i = 0; i < resortsLength; i++) {
+                if (param_id == resorts.skiArea[i]._id) {
+                    response.send(param_id);
+                    //response.redirect(url.parse(request.url).pathname);
+                    return
+                }
+            }
+
+            response.send({
+                error: "Could not find " + param_id + " in the resort list"
+            });
+
+        })
+        .catch(function (error) {
+            console.log(error);
+            response.send({
+                error: "Invalid Token"
+            });
+        })
+
 })
 
 app.get('/getResort', function (req, res, next) {
@@ -47,7 +77,4 @@ app.use(function (req, res, next) {
     return;
 });
 
-
 exports.app = functions.https.onRequest(app);
-
-
