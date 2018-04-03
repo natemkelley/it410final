@@ -5,102 +5,49 @@ var fs = require('fs');
 const https = require('https');
 const app = express();
 
+//Nate specific functions
 var skiResorts = require('./nates_files/ski.json');
+var api = require('./nates_files/api.js');
 
+app.get('/resorts/:id', (request, response) => {
+    var resorts = skiResorts.skiAreas;
+    var resortsLength = skiResorts.skiAreas.skiArea.length;
+    var param_id = request.params.id;
 
-app.get('/timestamp', (request, response) => {
-    var date = new Date();
-    response.send(date);
-});
+    for (i = 0; i < resortsLength; i++) {
+        if (param_id == resorts.skiArea[i]._id) {
+            response.send(param_id);
+            return
+        }
+    }
+
+    response.send({
+        error: "Could not find " + param_id + " in the resort list"
+    });
+})
 
 app.get('/getResort', function (req, res, next) {
     var query = req.query.q;
-    var result = compileResortList(query);
+    var result = api.compileResortList(query);
 
     res.status(200).json(result);
 });
 
 app.get('/getRegion', function (req, res, next) {
     var query = req.query.q;
-    var result = compileRegions(query);
+    var result = api.compileRegions(query);
 
     res.status(200).json(result);
 });
 
+app.use(function (req, res, next) {
+    res.send({
+        error: 'Not found'
+    });
+    return;
+});
+
+
 exports.app = functions.https.onRequest(app);
 
 
-
-function compileRegions(query) {
-    var resorts = skiResorts.skiAreas;
-    var resortsLength = skiResorts.skiAreas.skiArea.length;
-    var jsonresults = [];
-
-    var myRe = "^" + query;
-    myRe = myRe.toLowerCase();
-
-
-    for (i = 0; i < resortsLength; i++) {
-        var name = resorts.skiArea[i].name.__cdata;
-        var id = resorts.skiArea[i]._id;
-
-        var region = "undefined";
-        var region_lower = "undefined";
-
-        var website = "#";
-
-        if (resorts.skiArea[i].regions) {
-            region = resorts.skiArea[i].regions.region[0].__cdata;
-            region_lower = region.toLowerCase();
-        }
-
-        if (resorts.skiArea[i].officialWebsite) {
-            website = resorts.skiArea[i].officialWebsite.__cdata
-        }
-
-        if (region_lower.match(myRe)) {
-            jsonresults.push({
-                name: name,
-                website: website,
-                region: region,
-                id: id
-            })
-        }
-    }
-    return jsonresults;
-}
-
-function compileResortList(query) {
-    var resorts = skiResorts.skiAreas;
-    var resortsLength = skiResorts.skiAreas.skiArea.length;
-    var jsonresults = [];
-
-    var myRe = "^" + query;
-    myRe = myRe.toLowerCase();
-
-    for (i = 0; i < resortsLength; i++) {
-        var name = resorts.skiArea[i].name.__cdata;
-        var name_lower = name.toLowerCase();
-        var id = resorts.skiArea[i]._id;
-        var region = "undefined";
-        var website = "#";
-
-        if (resorts.skiArea[i].regions) {
-            region = resorts.skiArea[i].regions.region[0].__cdata;
-        }
-
-        if (resorts.skiArea[i].officialWebsite) {
-            website = resorts.skiArea[i].officialWebsite.__cdata;
-        }
-
-        if (name_lower.match(myRe)) {
-            jsonresults.push({
-                name: name,
-                website: website,
-                region: region,
-                id: id
-            })
-        }
-    }
-    return jsonresults;
-}
