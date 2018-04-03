@@ -16,6 +16,8 @@ const app = express();
 //Nate specific functions
 var skiResorts = require('./nates_files/ski.json');
 var api = require('./nates_files/api.js');
+var convert = require('xml-js');
+
 
 app.get('/resorts/:id', (request, response) => {
     var resorts = skiResorts.skiAreas;
@@ -24,7 +26,9 @@ app.get('/resorts/:id', (request, response) => {
     var idToken = request.query.tkn;
 
     if (!idToken) {
-        response.sendfile('/public/login.html', { root: __dirname + '/..' });
+        response.sendfile('/public/login.html', {
+            root: __dirname + '/..'
+        });
         return;
     }
 
@@ -34,7 +38,9 @@ app.get('/resorts/:id', (request, response) => {
             console.log(uid);
             for (i = 0; i < resortsLength; i++) {
                 if (param_id == resorts.skiArea[i]._id) {
-                    response.send(param_id);
+                    response.sendfile('/public/index.html', {
+                        root: __dirname + '/..'
+                    });
                     return
                 }
             }
@@ -65,6 +71,24 @@ app.get('/getRegion', function (req, res, next) {
     res.status(200).json(result);
 });
 
+app.get('/maps/:id', (request, response) => {
+    var param_id = request.params.id;
+    var url = "https://skimap.org/SkiMaps/view/" + param_id + ".xml";
+    console.log(url);
+
+    https.get(url, function (result) {
+        result.on('data', function (data) {
+            var result1 = convert.xml2json(data, {
+                compact: true,
+                spaces: 4
+            });
+            response.send(result1);
+        });
+    }).on('error', function (e) {
+        console.log('Got error: ' + e.message);
+    });
+})
+
 app.use(function (req, res, next) {
     res.send({
         error: 'Not found'
@@ -73,3 +97,4 @@ app.use(function (req, res, next) {
 });
 
 exports.app = functions.https.onRequest(app);
+
