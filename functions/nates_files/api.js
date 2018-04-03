@@ -1,5 +1,6 @@
-
 var skiResorts = require('./ski.json');
+const convert = require('xml-js');
+const https = require('https');
 
 exports.compileRegions = function compileRegions(query) {
     var resorts = skiResorts.skiAreas;
@@ -40,7 +41,7 @@ exports.compileRegions = function compileRegions(query) {
     return jsonresults;
 }
 
-exports.compileResortList =function compileResortList(query) {
+exports.compileResortList = function compileResortList(query) {
     var resorts = skiResorts.skiAreas;
     var resortsLength = skiResorts.skiAreas.skiArea.length;
     var jsonresults = [];
@@ -75,3 +76,22 @@ exports.compileResortList =function compileResortList(query) {
     return jsonresults;
 }
 
+
+exports.getMaps = function compileResortList(query) {
+    var url = "https://skimap.org/SkiMaps/view/" + query + ".xml";
+
+    return new Promise((resolve, reject) => {
+        https.get(url, function (result) {
+            result.on('data', function (data) {
+                var result1 = convert.xml2json(data, {
+                    compact: true,
+                    spaces: 4
+                });
+                resolve (result1);
+            });
+        }).on('error', function (e) {
+            reject('Got error: ' + e.message);
+        });
+    })
+
+}

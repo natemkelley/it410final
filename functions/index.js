@@ -10,13 +10,14 @@ const auth = firebase.auth();
 const express = require('express');
 var request = require('request');
 var fs = require('fs');
-const https = require('https');
 const app = express();
 
 //Nate specific functions
-var skiResorts = require('./nates_files/ski.json');
-var api = require('./nates_files/api.js');
-var convert = require('xml-js');
+const skiResorts = require('./nates_files/ski.json');
+const api = require('./nates_files/api.js');
+const convert = require('xml-js');
+const https = require('https');
+
 
 
 app.get('/resorts/:id', (request, response) => {
@@ -37,7 +38,7 @@ app.get('/resorts/:id', (request, response) => {
     response.send({
         error: "Could not find " + param_id + " in the resort list"
     });
-})
+});
 
 app.get('/resortsauth/:id', (request, response) => {
     var resorts = skiResorts.skiAreas;
@@ -75,25 +76,20 @@ app.get('/resortsauth/:id', (request, response) => {
                 error: "Invalid Token"
             });
         })
-})
+});
 
 app.get('/maps/:id', (request, response) => {
     var param_id = request.params.id;
-    var url = "https://skimap.org/SkiMaps/view/" + param_id + ".xml";
-    console.log(url);
 
-    https.get(url, function (result) {
-        result.on('data', function (data) {
-            var result1 = convert.xml2json(data, {
-                compact: true,
-                spaces: 4
-            });
-            response.send(result1);
-        });
-    }).on('error', function (e) {
-        console.log('Got error: ' + e.message);
+    api.getMaps(param_id)
+    .then(results => {
+        //console.log(response);
+        response.send(results);
+    })
+    .catch(error => {
+        console.log(error)
     });
-})
+});
 
 app.get('/getResort', function (req, res, next) {
     var query = req.query.q;
@@ -117,3 +113,12 @@ app.use(function (req, res, next) {
 });
 
 exports.app = functions.https.onRequest(app);
+
+
+api.getMaps(223)
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error => {
+        console.log(error)
+    });
