@@ -19,12 +19,10 @@ const convert = require('xml-js');
 const https = require('https');
 
 
-
 app.get('/resorts/:id', (request, response) => {
     var resorts = skiResorts.skiAreas;
     var resortsLength = skiResorts.skiAreas.skiArea.length;
     var param_id = request.params.id;
-
 
     for (i = 0; i < resortsLength; i++) {
         if (param_id == resorts.skiArea[i]._id) {
@@ -114,11 +112,3 @@ app.use(function (req, res, next) {
 
 exports.app = functions.https.onRequest(app);
 
-
-api.getMaps(223)
-    .then(response => {
-        console.log(response)
-    })
-    .catch(error => {
-        console.log(error)
-    });
