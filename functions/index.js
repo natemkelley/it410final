@@ -23,6 +23,26 @@ app.get('/resorts/:id', (request, response) => {
     var resorts = skiResorts.skiAreas;
     var resortsLength = skiResorts.skiAreas.skiArea.length;
     var param_id = request.params.id;
+
+
+    for (i = 0; i < resortsLength; i++) {
+        if (param_id == resorts.skiArea[i]._id) {
+            response.sendfile('/public/index.html', {
+                root: __dirname + '/..'
+            });
+            return
+        }
+    }
+
+    response.send({
+        error: "Could not find " + param_id + " in the resort list"
+    });
+})
+
+app.get('/resortsauth/:id', (request, response) => {
+    var resorts = skiResorts.skiAreas;
+    var resortsLength = skiResorts.skiAreas.skiArea.length;
+    var param_id = request.params.id;
     var idToken = request.query.tkn;
 
     if (!idToken) {
@@ -57,20 +77,6 @@ app.get('/resorts/:id', (request, response) => {
         })
 })
 
-app.get('/getResort', function (req, res, next) {
-    var query = req.query.q;
-    var result = api.compileResortList(query);
-
-    res.status(200).json(result);
-});
-
-app.get('/getRegion', function (req, res, next) {
-    var query = req.query.q;
-    var result = api.compileRegions(query);
-
-    res.status(200).json(result);
-});
-
 app.get('/maps/:id', (request, response) => {
     var param_id = request.params.id;
     var url = "https://skimap.org/SkiMaps/view/" + param_id + ".xml";
@@ -89,6 +95,20 @@ app.get('/maps/:id', (request, response) => {
     });
 })
 
+app.get('/getResort', function (req, res, next) {
+    var query = req.query.q;
+    var result = api.compileResortList(query);
+
+    res.status(200).json(result);
+});
+
+app.get('/getRegion', function (req, res, next) {
+    var query = req.query.q;
+    var result = api.compileRegions(query);
+
+    res.status(200).json(result);
+});
+
 app.use(function (req, res, next) {
     res.send({
         error: 'Not found'
@@ -97,4 +117,3 @@ app.use(function (req, res, next) {
 });
 
 exports.app = functions.https.onRequest(app);
-
