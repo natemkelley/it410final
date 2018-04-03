@@ -41,9 +41,9 @@ function displayResults(data) {
 
     $.each(data, function (i, item) {
         if (tkn == null) {
-            table += "<tr><td><a  href='resorts/" + data[i].id + "'> " + data[i].name + "</a></td>";
+            table += "<tr><td><a target='_blank' href='resorts/" + data[i].id + "'> " + data[i].name + "</a></td>";
         } else {
-            table += "<tr><td><a  href='resorts/" + data[i].id + "?tkn=" + tkn + "'> " + data[i].name + "</a></td>";
+            table += "<tr><td><a target='_blank' href='resorts/" + data[i].id + "?tkn=" + tkn + "'> " + data[i].name + "</a></td>";
         }
 
         table += "<td>" + data[i].region + "</td>";

@@ -12,7 +12,6 @@ var request = require('request');
 var fs = require('fs');
 const https = require('https');
 const app = express();
-const url = require('url'); // built-in utility
 
 //Nate specific functions
 var skiResorts = require('./nates_files/ski.json');
@@ -29,7 +28,6 @@ app.get('/resorts/:id', (request, response) => {
         return;
     }
 
-
     auth.verifyIdToken(idToken)
         .then(function (decodedToken) {
             var uid = decodedToken.uid;
@@ -37,7 +35,6 @@ app.get('/resorts/:id', (request, response) => {
             for (i = 0; i < resortsLength; i++) {
                 if (param_id == resorts.skiArea[i]._id) {
                     response.send(param_id);
-                    //response.redirect(url.parse(request.url).pathname);
                     return
                 }
             }
@@ -45,7 +42,6 @@ app.get('/resorts/:id', (request, response) => {
             response.send({
                 error: "Could not find " + param_id + " in the resort list"
             });
-
         })
         .catch(function (error) {
             console.log(error);
@@ -53,7 +49,6 @@ app.get('/resorts/:id', (request, response) => {
                 error: "Invalid Token"
             });
         })
-
 })
 
 app.get('/getResort', function (req, res, next) {
