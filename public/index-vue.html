@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/signin.css">
-<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 
 
 
@@ -13,11 +12,11 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">SkiTown</a>
+                    <a class="navbar-brand">SkiTown</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="localhost:5000">Home</a></li>
-                    <li class=""><a href="#">Resort</a></li>
+                    <li class="active"><router-link to="/">Home</router-link></li>
+                    <li class="" @click="$router.push('/resort/123')"><a>Resort</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a id="loginDisplay" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login / Register</a></li>
@@ -26,35 +25,51 @@
         </nav>
 
 
-
-
-
-
-
-        <div>
-            <!-- define some links -->
-            <router-link to="/page-1">Page 1</router-link>
-            <router-link to="/page-2">Page 2</router-link>
-
-            <!-- JavaScript navigate -->
-            <button @click="$router.push('page-x/Hello')">Page X: Hello</button>
-        </div>
-
-        <!-- router content will show up inside this -->
         <router-view></router-view>
     </div>
 
 
 
-
-
-
-
-
-
-
 </body>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Login/Register</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-signin">
+                        <h2 class="form-signin-heading">Please sign in</h2>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" autofocus>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password">
+
+                        <button class="btn btn-lg btn-warning btn-block" id="register">Register</button>
+                        <button class="btn btn-lg btn-primary btn-block" id="signIn">Sign in</button>
+                        <button class="btn btn-lg btn-default btn-block" id="googleSignIn" style="width:100%;">Sign in with Google</button>
+                    </div>
+                    <button class="btn btn-lg btn-danger btn-block hide" style="width:100%; margin-top: 5px;" id="signOut">Sign Out</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 <script src="resources/js/vue.js"></script>
 <script src="resources/js/vue-router.js"></script>
 <script src="resources/js/vue-resortapi.js"></script>
 <script src="resources/js/vue-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script src="../resources/js/jquery.min.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
+<script src="../resources/js/resortAPI.js"></script>
+<script src="../resources/js/login.js"></script>

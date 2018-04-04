@@ -3,18 +3,17 @@
     // define the router
     const router = new VueRouter({
         // uncomment next line for html5 routing
-        // mode: 'history',
+        //mode: 'history',
 
         routes: [
             // static routes
-            { path: '/page-1', component: components.page1 },
-            { path: '/page-2', component: components.page2 },
+            { path: '/', component: components.home },
 
             // dynamic route (has parameters)
-            { path: '/page-x/:x', component: components.pageX },
+            { path: '/resort/:x', component: components.pageX },
 
             // if path doesn't match anything then redirect
-            { path: '*', redirect: '/page-1' }
+            { path: '*', redirect: '/' }
         ]
     });
 
