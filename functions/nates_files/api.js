@@ -86,7 +86,24 @@ exports.getMaps = function compileResortList(query) {
                     compact: true,
                     spaces: 4
                 });
-                resolve(result1);
+
+                var preptosend = JSON.parse(result1);
+                console.log(preptosend);
+
+                if ("skiMap" in preptosend) {
+                } else {
+                    resolve("https://media.giphy.com/media/4lSw7uVVULDhu/giphy.gif");
+                    return
+                    
+                }
+
+                if ("render" in preptosend.skiMap) {
+                    preptosend = preptosend.skiMap.render._attributes.url;
+                    resolve(preptosend);
+                } else {
+                    preptosend = preptosend.skiMap.unprocessed._attributes.url;
+                    resolve(preptosend);
+                }
             });
         }).on('error', function (e) {
             reject('Got error: ' + e.message);
@@ -112,7 +129,7 @@ exports.getResort = function compileResortList(query) {
 function compileMapList(data) {
     var json = JSON.parse(data);
     console.log(json.ski_maps.length);
-    
+
     return new Promise((resolve, reject) => {
         for (i = 0; i >= data.ski_maps.length; i++) {
             console.log(json.ski_maps[i]);
@@ -120,8 +137,8 @@ function compileMapList(data) {
     })
 }
 
-function getOneMap(data){
-    
+function getOneMap(data) {
+
 }
 
 function checkDone() {

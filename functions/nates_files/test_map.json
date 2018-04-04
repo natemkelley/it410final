@@ -1,56 +1,88 @@
 {
+    "_declaration": {
+        "_attributes": {
+            "version": "1.0",
+            "encoding": "UTF-8"
+        }
+    },
     "skiMap": {
-        "caption": {
-            "__cdata": " Canyons "
+        "_attributes": {
+            "id": "2846"
         },
-        "yearPublished": "2017",
+        "yearPublished": {
+            "_text": "2008"
+        },
         "thumbnail": [
             {
-                "_width": "100",
-                "_url": "https://skimap.org/data/218/7/1418788149thumb100w.jpg"
-         },
+                "_attributes": {
+                    "width": "100",
+                    "url": "https://skimap.org/data/319/7/1237081979thumb100w.jpg"
+                }
+            },
             {
-                "_width": "200",
-                "_url": "https://skimap.org/data/218/7/1418788149thumb200w.jpg"
-         },
+                "_attributes": {
+                    "width": "200",
+                    "url": "https://skimap.org/data/319/7/1237081979thumb200w.jpg"
+                }
+            },
             {
-                "_width": "400",
-                "_url": "https://skimap.org/data/218/7/1418788149thumb.jpg"
-         },
+                "_attributes": {
+                    "width": "400",
+                    "url": "https://skimap.org/data/319/7/1237081979thumb.jpg"
+                }
+            },
             {
-                "_height": "100",
-                "_url": "https://skimap.org/data/218/7/1418788149thumb100h.jpg"
-         },
+                "_attributes": {
+                    "height": "100",
+                    "url": "https://skimap.org/data/319/7/1237081979thumb100h.jpg"
+                }
+            },
             {
-                "_height": "200",
-                "_url": "https://skimap.org/data/218/7/1418788149thumb200h.jpg"
-         },
+                "_attributes": {
+                    "height": "200",
+                    "url": "https://skimap.org/data/319/7/1237081979thumb200h.jpg"
+                }
+            },
             {
-                "_height": "400",
-                "_url": "https://skimap.org/data/218/7/1418788149thumb400h.jpg"
-         }
-      ],
+                "_attributes": {
+                    "height": "400",
+                    "url": "https://skimap.org/data/319/7/1237081979thumb400h.jpg"
+                }
+            }
+        ],
         "unprocessed": {
-            "_width": "3338",
-            "_height": "2086",
-            "_size": "1420109",
-            "_url": "https://skimap.org/data/218/7/1418788149.jpg"
+            "_attributes": {
+                "size": "833573",
+                "url": "https://skimap.org/data/319/7/1237081979.pdf"
+            }
+        },
+        "render": {
+            "_attributes": {
+                "url": "https://skimap.org/data/319/7/1237081979jpg_render.jpg"
+            }
         },
         "skiArea": {
-            "_id": "229",
-            "__cdata": " Park City Mountain Resort "
+            "_attributes": {
+                "id": "319"
+            },
+            "_cdata": "HoliMont"
         },
         "tags": {
             "tag": {
-                "_id": "1",
-                "_name": "Downhill"
+                "_attributes": {
+                    "id": "1",
+                    "name": "Downhill"
+                }
             }
         },
-        "created": "2014-12-17T03:49:09+00:00",
-        "user": {
-            "_id": "7",
-            "__cdata": " skier "
+        "created": {
+            "_text": "2009-03-15T01:52:59+00:00"
         },
-        "_id": "8435"
+        "user": {
+            "_attributes": {
+                "id": "7"
+            },
+            "_cdata": "skier"
+        }
     }
 }
