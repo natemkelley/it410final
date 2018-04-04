@@ -35,7 +35,7 @@ function displayResults(data) {
     console.log(data);
     var tkn = localStorage.getItem('idToken');
 
-    var table = '<table style="width: 100%">';
+    var table = '<table style="width: 100%; max-width:1000px;">';
     table += "<colgroup><col style='width: 40%;'><col style='width: 25%;'><col style='width: 35%;'></colgroup>"
     table += "<tr><th>Name</th><th>Region</th><th>Official Website</th></tr>";
 

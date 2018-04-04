@@ -114,12 +114,8 @@ exports.getResort = function compileResortList(query) {
     return new Promise((resolve, reject) => {
         https.get(url, function (result) {
             result.on('data', function (data) {
-
-
                 var compiled = data.toString();
                 resolve(replaceWithImages(compiled));
-
-
             });
         }).on('error', function (e) {
             reject('Got error: ' + e.message);
@@ -130,10 +126,19 @@ exports.getResort = function compileResortList(query) {
 function replaceWithImages(data) {
     var json = JSON.parse(data);
     var length = json.ski_maps.length;
-
     var datVal = null;
     var dunzo = 0;
     var returnNow = false;
+    var dummyVal = "https://media.giphy.com/media/4lSw7uVVULDhu/giphy.gif";
+
+
+    console.log(json.ski_maps)
+    
+    if (json.ski_maps.length < 1) {
+        json.ski_maps[0] = {"id":dummyVal};
+        return json;
+    }
+
 
     return new Promise((resolve, reject) => {
         for (i = 0; i < length; i++) {
@@ -149,7 +154,7 @@ function replaceWithImages(data) {
                     var preptosend = JSON.parse(xml2json);
 
                     if ("skiMap" in preptosend) {} else {
-                        datVal = "https://media.giphy.com/media/4lSw7uVVULDhu/giphy.gif";
+                        datVal = dummyVal;
                     }
 
                     if ("render" in preptosend.skiMap) {

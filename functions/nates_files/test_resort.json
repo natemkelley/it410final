@@ -1,13 +1,13 @@
 {
-    "id": "466",
-    "name": "Sundown Mountain",
+    "id": "275",
+    "name": "Clear Fork Ski Area",
     "official_website": "",
     "owner": "",
     "terrain_park": "Unknown",
     "night_skiing": "Unknown",
-    "operating_status": "Operating",
-    "latitude": 42.515575253513,
-    "longitude": -90.819897651672,
+    "operating_status": "Closed",
+    "latitude": 40.59352317161,
+    "longitude": -82.412288188934,
     "user": {
         "id": "7",
         "username": "skier"
@@ -17,24 +17,20 @@
         "name": "Downhill"
     }],
     "ski_maps": [{
-        "id": "https://skimap.org/data/466/2030/1458405735.jpg"
+        "id": "https://skimap.org/data/275/2200/1454524726.jpeg"
     }, {
-        "id": "https://skimap.org/data/466/7/1209512459.jpg"
+        "id": "https://skimap.org/data/275/916/1335908277.jpg"
     }, {
-        "id": "https://skimap.org/data/466/7/1209512589.jpg"
+        "id": "https://skimap.org/data/275/217/1267753934.jpg"
     }, {
-        "id": "https://skimap.org/data/466/7/1209512544.jpg"
+        "id": "https://skimap.org/data/275/2200/1456251542.jpeg"
     }, {
-        "id": "https://skimap.org/data/466/2030/1514944401.jpg"
-    }, {
-        "id": "https://skimap.org/data/466/2200/1445213523.jpeg"
-    }, {
-        "id": "https://skimap.org/data/466/916/1336241933.jpg"
+        "id": "https://skimap.org/data/275/2200/1491617747.jpg"
     }],
     "open_ski_maps": [],
-    "created": "2015-10-20T15:30:57+00:00",
+    "created": "2016-01-11T19:54:24+00:00",
     "regions": [{
-        "id": "290",
-        "name": "Iowa"
+        "id": "310",
+        "name": "Ohio"
     }]
 }

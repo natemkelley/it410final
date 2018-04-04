@@ -63,9 +63,12 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 });
 
 function displayNameLogin(firebaseUser) {
-    signIn.hide();
+    //signIn.hide();
     signOut.removeClass('hide').fadeIn();
-    googleSign.addClass('hide');
+    //googleSign.addClass('hide');
+    //$("#register").addClass('hide');
+    $(".form-signin").addClass('hide');
+
 
     if (firebaseUser.displayName) {
         $('#loginDisplay').html('<span class="glyphicon glyphicon-log-in" style="margin-right:5px;"></span>' + firebaseUser.displayName);
@@ -79,19 +82,17 @@ function displayNameLogin(firebaseUser) {
 function displayNoNameLogin() {
     console.log('not logged');
     signOut.addClass('hide');
-    googleSign.removeClass('hide').fadeIn();
-    signIn.fadeIn();
+    $(".form-signin").removeClass('hide').fadeIn();
+
     $('#loginDisplay').html('<span class="glyphicon glyphicon-log-in" style="margin-right:5px;"></span>' + "Login/Register");
     localStorage.removeItem('idToken');
 }
 
-function getIDToken(){
-    firebase.auth().currentUser.getIdToken(true).then(function(idToken){
+function getIDToken() {
+    firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
         console.log(idToken);
         localStorage.setItem('idToken', idToken);
-    }).catch(function(error){
+    }).catch(function (error) {
         console.error(error);
     })
 }
-
-
