@@ -76,7 +76,6 @@ exports.compileResortList = function compileResortList(query) {
     return jsonresults;
 }
 
-
 exports.getMaps = function compileResortList(query) {
     var url = "https://skimap.org/SkiMaps/view/" + query + ".xml";
 
@@ -87,11 +86,45 @@ exports.getMaps = function compileResortList(query) {
                     compact: true,
                     spaces: 4
                 });
-                resolve (result1);
+                resolve(result1);
             });
         }).on('error', function (e) {
             reject('Got error: ' + e.message);
         });
     })
+}
 
+exports.getResort = function compileResortList(query) {
+    var url = "https://skimap.org/SkiAreas/view/" + query + ".json";
+
+    return new Promise((resolve, reject) => {
+        https.get(url, function (result) {
+            result.on('data', function (data) {
+                var compiled = data.toString();
+                resolve(compiled);
+            });
+        }).on('error', function (e) {
+            reject('Got error: ' + e.message);
+        });
+    })
+}
+
+function compileMapList(data) {
+    var json = JSON.parse(data);
+    console.log(json.ski_maps.length);
+    
+    return new Promise((resolve, reject) => {
+        for (i = 0; i >= data.ski_maps.length; i++) {
+            console.log(json.ski_maps[i]);
+        }
+    })
+}
+
+function getOneMap(data){
+    
+}
+
+function checkDone() {
+    done--;
+    if (done === 0) console.log('DUNZO BUNZO');
 }

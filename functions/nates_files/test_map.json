@@ -1,0 +1,56 @@
+{
+    "skiMap": {
+        "caption": {
+            "__cdata": " Canyons "
+        },
+        "yearPublished": "2017",
+        "thumbnail": [
+            {
+                "_width": "100",
+                "_url": "https://skimap.org/data/218/7/1418788149thumb100w.jpg"
+         },
+            {
+                "_width": "200",
+                "_url": "https://skimap.org/data/218/7/1418788149thumb200w.jpg"
+         },
+            {
+                "_width": "400",
+                "_url": "https://skimap.org/data/218/7/1418788149thumb.jpg"
+         },
+            {
+                "_height": "100",
+                "_url": "https://skimap.org/data/218/7/1418788149thumb100h.jpg"
+         },
+            {
+                "_height": "200",
+                "_url": "https://skimap.org/data/218/7/1418788149thumb200h.jpg"
+         },
+            {
+                "_height": "400",
+                "_url": "https://skimap.org/data/218/7/1418788149thumb400h.jpg"
+         }
+      ],
+        "unprocessed": {
+            "_width": "3338",
+            "_height": "2086",
+            "_size": "1420109",
+            "_url": "https://skimap.org/data/218/7/1418788149.jpg"
+        },
+        "skiArea": {
+            "_id": "229",
+            "__cdata": " Park City Mountain Resort "
+        },
+        "tags": {
+            "tag": {
+                "_id": "1",
+                "_name": "Downhill"
+            }
+        },
+        "created": "2014-12-17T03:49:09+00:00",
+        "user": {
+            "_id": "7",
+            "__cdata": " skier "
+        },
+        "_id": "8435"
+    }
+}

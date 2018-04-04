@@ -24,11 +24,19 @@ app.get('/resorts/:id', (request, response) => {
     var resortsLength = skiResorts.skiAreas.skiArea.length;
     var param_id = request.params.id;
 
+    console.log(param_id);
     for (i = 0; i < resortsLength; i++) {
         if (param_id == resorts.skiArea[i]._id) {
-            response.sendfile('/public/index.html', {
-                root: __dirname + '/..'
-            });
+
+            api.getResort(param_id)
+                .then(results => {
+                    response.status(200).send(results);
+                    return
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+
             return
         }
     }
@@ -57,9 +65,15 @@ app.get('/resortsauth/:id', (request, response) => {
             console.log(uid);
             for (i = 0; i < resortsLength; i++) {
                 if (param_id == resorts.skiArea[i]._id) {
-                    response.sendfile('/public/index.html', {
-                        root: __dirname + '/..'
-                    });
+
+                    api.getResort(param_id)
+                        .then(results => {
+                            response.status(200).send(results);
+                            return
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        });
                     return
                 }
             }
@@ -80,13 +94,12 @@ app.get('/maps/:id', (request, response) => {
     var param_id = request.params.id;
 
     api.getMaps(param_id)
-    .then(results => {
-        //console.log(response);
-        response.send(results);
-    })
-    .catch(error => {
-        console.log(error)
-    });
+        .then(results => {
+            response.send(results);
+        })
+        .catch(error => {
+            console.log(error)
+        });
 });
 
 app.get('/getResort', function (req, res, next) {
@@ -112,3 +125,10 @@ app.use(function (req, res, next) {
 
 exports.app = functions.https.onRequest(app);
 
+
+
+
+/*
+response.sendfile('/public/index.html', {
+    root: __dirname + '/..'
+});*/

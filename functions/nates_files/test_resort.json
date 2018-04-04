@@ -1,0 +1,48 @@
+{
+    "id": "575",
+    "name": "Black Jack",
+    "official_website": "http:\/\/www.skiblackjack.ca\/",
+    "owner": "",
+    "terrain_park": "Unknown",
+    "night_skiing": "Unknown",
+    "operating_status": "Operating",
+    "latitude": 49.113096454959,
+    "longitude": -117.81360626221,
+    "user": {
+        "id": "1",
+        "username": "wbski"
+    },
+    "tags": [{
+        "id": "2",
+        "name": "Nordic"
+    }],
+    "ski_maps": [{
+        "id": "24"
+    }, {
+        "id": "25"
+    }],
+    "open_ski_maps": [{
+        "id": "6616",
+        "date": "2017-06-10"
+    }, {
+        "id": "4269",
+        "date": "2012-07-11"
+    }, {
+        "id": "3991",
+        "date": "2012-01-27"
+    }, {
+        "id": "3539",
+        "date": "2011-04-18"
+    }, {
+        "id": "2849",
+        "date": "2011-04-02"
+    }, {
+        "id": "2098",
+        "date": "2011-03-20"
+    }],
+    "created": "2009-12-19T05:57:25+00:00",
+    "regions": [{
+        "id": "331",
+        "name": "British Columbia"
+    }]
+}
