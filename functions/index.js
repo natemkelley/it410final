@@ -24,13 +24,11 @@ app.get('/resorts/:id', (request, response) => {
     var resortsLength = skiResorts.skiAreas.skiArea.length;
     var param_id = request.params.id;
 
-    console.log(param_id);
     for (i = 0; i < resortsLength; i++) {
         if (param_id == resorts.skiArea[i]._id) {
 
             api.getResort(param_id)
                 .then(results => {
-                    console.log(results);
                     response.status(200).send(results);
                     return
                 })
@@ -63,7 +61,6 @@ app.get('/resortsauth/:id', (request, response) => {
     auth.verifyIdToken(idToken)
         .then(function (decodedToken) {
             var uid = decodedToken.uid;
-            console.log(uid);
             for (i = 0; i < resortsLength; i++) {
                 if (param_id == resorts.skiArea[i]._id) {
 

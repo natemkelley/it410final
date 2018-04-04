@@ -88,7 +88,6 @@ exports.getMaps = function compileResortMaps(query) {
                 });
 
                 var preptosend = JSON.parse(result1);
-                console.log(preptosend);
 
                 if ("skiMap" in preptosend) {} else {
                     resolve("https://media.giphy.com/media/4lSw7uVVULDhu/giphy.gif");
@@ -115,10 +114,12 @@ exports.getResort = function compileResortList(query) {
     return new Promise((resolve, reject) => {
         https.get(url, function (result) {
             result.on('data', function (data) {
+
+
                 var compiled = data.toString();
-                var X = "FAILED"
-                X = replaceWithImages(compiled)
-                resolve(X);
+                resolve(replaceWithImages(compiled));
+
+
             });
         }).on('error', function (e) {
             reject('Got error: ' + e.message);
@@ -129,52 +130,58 @@ exports.getResort = function compileResortList(query) {
 function replaceWithImages(data) {
     var json = JSON.parse(data);
     var length = json.ski_maps.length;
-    console.log(length);
 
     var datVal = null;
     var dunzo = 0;
     var returnNow = false;
 
-    for (i = 0; i < length; i++) {
-        var url = "https://skimap.org/SkiMaps/view/" + json.ski_maps[i].id + ".xml";
+    return new Promise((resolve, reject) => {
+        for (i = 0; i < length; i++) {
+            var url = "https://skimap.org/SkiMaps/view/" + json.ski_maps[i].id + ".xml";
 
-        https.get(url, function (result) {
-            result.on('data', function (data) {
-                var result1 = convert.xml2json(data, {
-                    compact: true,
-                    spaces: 4
+            https.get(url, function (result, i) {
+                result.on('data', function (data) {
+                    var xml2json = convert.xml2json(data, {
+                        compact: true,
+                        spaces: 4
+                    });
+
+                    var preptosend = JSON.parse(xml2json);
+
+                    if ("skiMap" in preptosend) {} else {
+                        datVal = "https://media.giphy.com/media/4lSw7uVVULDhu/giphy.gif";
+                    }
+
+                    if ("render" in preptosend.skiMap) {
+                        preptosend = preptosend.skiMap.render._attributes.url;
+                        datVal = preptosend;
+
+                    } else {
+                        preptosend = preptosend.skiMap.unprocessed._attributes.url;
+                        datVal = preptosend;
+                    }
+
+                    json.ski_maps[dunzo].id = datVal;
+
+                    checkDone();
+                    console.log(datVal);
+
+                    if (returnNow == true) {
+                        resolve(json);
+                    }
+
                 });
-
-                var preptosend = JSON.parse(result1);
-                //console.log(preptosend);
-
-                if ("skiMap" in preptosend) {} else {
-                    datVal = "https://media.giphy.com/media/4lSw7uVVULDhu/giphy.gif";
-                }
-
-                if ("render" in preptosend.skiMap) {
-                    preptosend = preptosend.skiMap.render._attributes.url;
-                    datVal = preptosend;
-                } else {
-                    preptosend = preptosend.skiMap.unprocessed._attributes.url;
-                    datVal = preptosend;
-                }
-                
-                console.log(datVal);
-                checkDone();
-                
-                if(returnNow == true){
-                    console.log("XXXXXXXXXXXXXXXXXXXX")
-                    return "X";
-                }
+            }).on('error', function (e) {
+                reject('Got error: ' + e.message);
             });
-        })
-    }
-    
-    function checkDone (){
+        }
+    })
+
+    function checkDone() {
         dunzo++;
-        if(dunzo==length){
+        if (dunzo == length) {
             returnNow = true;
         }
     }
+
 }
