@@ -30,6 +30,7 @@ app.get('/resorts/:id', (request, response) => {
 
             api.getResort(param_id)
                 .then(results => {
+                    console.log(results);
                     response.status(200).send(results);
                     return
                 })
