@@ -10,13 +10,14 @@
             { path: '/', component: components.home },
 
             // dynamic route (has parameters)
-            { path: '/resort/:x', component: components.pageX },
+            { path: '/resorts/:x', component: components.pageX },
 
             // if path doesn't match anything then redirect
             { path: '*', redirect: '/' }
         ]
     });
 
+    
     // add the router to the app
     const app = new Vue({
         el: '#app',

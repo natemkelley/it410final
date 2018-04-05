@@ -6,6 +6,7 @@ components.pageX = {
 
     // this is to handle updates to this component when 
     // the route changes but the component does not
+    
     beforeRouteUpdate(to, from, next) {
         this.x = to.params.x;
         next();
