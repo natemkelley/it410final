@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#resortField").keyup(function () {
-        if ($("#resortField").val().length >= 0) {
+        if ($("#resortField").val().length >= 1) {
             var myquery = "/getResort?q=" + $("#resortField").val();
 
             $.ajax({
@@ -38,9 +38,9 @@ function displayResults(data) {
 
     $.each(data, function (i, item) {
         if (tkn == null) {
-            table += "<tr><td><a  href='resorts/" + data[i].id + "'> " + data[i].name + "</a></td>";
+            table += "<tr><td><a class='getResort'  id='resorts/" + data[i].id + "'> " + data[i].name + "</a></td>";
         } else {
-            table += "<tr><td><a  href='resorts/" + data[i].id /*+ "?tkn=" + tkn*/ + "'> " + data[i].name + "</a></td>";
+            table += "<tr><td><a class='getResort' id='resorts/" + data[i].id /*+ "?tkn=" + tkn*/ + "'> " + data[i].name + "</a></td>";
         }
 
         table += "<td>" + data[i].region + "</td>";

@@ -16,11 +16,11 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">SkiTown</a>
+                <a class="navbar-brand">SkiTown</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="localhost:5000">Home</a></li>
-                <li class=""><a href="#">Resort</a></li>
+            <ul class="nav navbar-nav the-tabs">
+                <li class="active"><a id="goHome">Home</a></li>
+                <li class=""><a id="goResort">Resort</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a id="loginDisplay" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login / Register</a></li>
@@ -28,7 +28,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container goHome">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                 <form class="form-group">
@@ -39,13 +39,16 @@
                             <h3>Ski Region: </h3>
                             <input placeholder="Example: Utah" type="text" id="regionField" value="" class="form-control">
                             <br>
-                            <p><strong id="strong">Suggestion:</strong> <span id="txtHint">Empty</span>
-                            </p>
+                            <div id="txtHint">Empty</div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
+    
+    <div class="container goResort" style="display: none">
+        <h1>resorts</h1>
     </div>
 
     <div id="myModal" class="modal fade" role="dialog">
@@ -82,7 +85,8 @@
 
 <script src="../resources/js/jquery.min.js"></script>
 <script src="../resources/js/bootstrap.min.js"></script>
-<script src="../resources/js/resortAPI.js"></script>
+<script src="../resources/js/getResortAPI.js"></script>
 <script src="../resources/js/login.js"></script>
+<script src="../resources/js/displayResort.js"></script>
 
 </html>
