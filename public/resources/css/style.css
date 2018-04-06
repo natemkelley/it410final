@@ -1,7 +1,7 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    max-width: 100%;
 }
 
 td, th {
@@ -19,4 +19,9 @@ tr:nth-child(even) {
 
 tr:hover{
     background-color: rgba(213, 255, 201, 0.39);
+}
+
+img {
+    width: 80%;
+    max-width: 100%;
 }

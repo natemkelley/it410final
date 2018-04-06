@@ -38,9 +38,9 @@ function displayResults(data) {
 
     $.each(data, function (i, item) {
         if (tkn == null) {
-            table += "<tr><td><a class='getResort'  id='resorts/" + data[i].id + "'> " + data[i].name + "</a></td>";
+            table += "<tr><td><a   onclick=getResort('resorts/" + data[i].id + "')> " + data[i].name + "</a></td>";
         } else {
-            table += "<tr><td><a class='getResort' id='resorts/" + data[i].id /*+ "?tkn=" + tkn*/ + "'> " + data[i].name + "</a></td>";
+            table += "<tr><td><a  onclick=getResort('resorts/" + data[i].id /*+ "?tkn=" + tkn*/ + "')> " + data[i].name + "</a></td>";
         }
 
         table += "<td>" + data[i].region + "</td>";
