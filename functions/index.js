@@ -123,10 +123,3 @@ app.use(function (req, res, next) {
 
 exports.app = functions.https.onRequest(app);
 
-
-
-
-/*
-response.sendfile('/public/index.html', {
-    root: __dirname + '/..'
-});*/
