@@ -13,6 +13,7 @@ const reg = $('#register');
 const signIn = $('#signIn');
 const signOut = $('#signOut');
 const googleSign = $('#googleSignIn');
+var USERNAME = "-"
 
 $(reg).click(function (event) {
     var email = $('#inputEmail').val();
@@ -55,6 +56,7 @@ $(googleSign).click(function (event) {
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser);
+        setUserName(firebaseUser);
         displayNameLogin(firebaseUser);
         getIDToken();
     } else {
@@ -90,9 +92,17 @@ function displayNoNameLogin() {
 
 function getIDToken() {
     firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
-        console.log(idToken);
+        //console.log(idToken);
         localStorage.setItem('idToken', idToken);
     }).catch(function (error) {
         console.error(error);
     })
+}
+
+function setUserName(firebaseUser) {
+    if (firebaseUser.displayName != "") {
+        USERNAME = firebaseUser.displayName;
+    } else {
+        USERNAME = firebaseUser.email
+    }
 }

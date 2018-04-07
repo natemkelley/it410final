@@ -56,3 +56,14 @@ img {
     width: 86%;
     margin: 30px auto;
 }
+
+.comment-btn{
+    float: right;
+    margin-top: 7px;
+}
+.collapse.in {
+    display: block;
+    border: solid 1px #aaaaaa;
+    padding: 15px;
+    padding-bottom: 40px;
+    margin-top: 10px;}

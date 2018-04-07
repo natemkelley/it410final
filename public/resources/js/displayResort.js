@@ -30,6 +30,7 @@ function getResort(resortNum) {
         success: function (datJSON) {
             $(".loader").hide();
             $("#resortInfo").fadeIn();
+            getResortComments(resortNum);
             displayResort(datJSON);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -60,7 +61,7 @@ function displayResort(datJSON) {
             case 'regions':
                 table += "<tr><th>" + i + "</th><td>";
                 $.each(datJSON.regions, function (i, item) {
-                    console.log(item);
+                    //console.log(item);
                     table += item.name + "<br>";
                 })
                 table += "</td></tr>";
@@ -68,7 +69,7 @@ function displayResort(datJSON) {
             case 'tags':
                 table += "<tr><th>" + i + "</th><td>";
                 $.each(datJSON.tags, function (i, item) {
-                    console.log(item);
+                    //console.log(item);
                     table += item.name + "<br>";
                 })
                 table += "</td></tr>";

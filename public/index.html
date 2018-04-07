@@ -49,7 +49,7 @@
 
     <div class="container goResort" style="display: none">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center loader"><img src="https://media1.tenor.com/images/d0076afff7ad70950b3416587417bffa/tenor.gif?itemid=4896987"></div>
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center loader"><img src="https://media1.tenor.com/images/d0076afff7ad70950b3416587417bffa/tenor.gif?itemid=4896987"><br></div>
 
             <div style="display: none" id="resortInfo">
                 <div class="col-md-10 col-md-offset-1 text-center">
@@ -65,7 +65,13 @@
                 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                     <a href="#demo" class="btn btn-info" data-toggle="collapse" style="width: 100%; margin-top: 30px">Comment Box</a>
                     <div id="demo" class="collapse">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <form>
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <button type="button" class="btn btn-default comment-btn" onclick='writeResortComments()'>Button</button>
+                            </div>
+                        </form>
                         <div id="chatBox"></div>
                     </div>
                 </div>
