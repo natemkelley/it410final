@@ -16,7 +16,7 @@ function toggleTab(id) {
 }
 
 function getResort(resortNum) {
-    GLOBAL_RESORT_NUM = resortNum;
+    GLOBAL_RESORT_NUM = resortNum.split('/').join('-');
 
     toggleTab('goResort');
     $("#resortInfo").hide();

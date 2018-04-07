@@ -2,14 +2,13 @@
 var database = firebase.database();
 
 
-function getResortComments(resortID) {
-    console.log(resortID);
-    console.log(USERNAME);
-    /*
-    var resortComments = firebase.database().ref(resortID);
+function getResortComments() {
+    var resortComments = firebase.database().ref(GLOBAL_RESORT_NUM);
+    console.log(GLOBAL_RESORT_NUM);
+    
     resortComments.on('value', function (snapshot) {
-        console.log(snapshot)
-    });*/
+        console.log(snapshot.val())
+    });
 }
 
 function writeResortComments() {
@@ -17,13 +16,12 @@ function writeResortComments() {
         return;
     }
     var comment = $("#comment").val();
-    var resortNum = GLOBAL_RESORT_NUM.split('/').join('-');
     var time = new Date().getTime();
 
-    firebase.database().ref(resortNum+"/"+time).set({
+    firebase.database().ref(GLOBAL_RESORT_NUM + "/" + time).set({
         username: USERNAME,
         comment: comment
     });
-    
+
     $("#comment").val("");
 }
