@@ -1,11 +1,12 @@
-//console.log('commentbox');
 var database = firebase.database();
 var resortArray = [];
 
-
 function getResortComments() {
+    $("#displayComment td").remove();
+
     var resortComments = firebase.database().ref(GLOBAL_RESORT_NUM);
-    console.log(GLOBAL_RESORT_NUM);
+    resortArray = [];
+    console.log(resortArray);
 
     resortComments.on('value', function (snapshot) {
         $.each(snapshot.val(), function (i, item) {
@@ -19,13 +20,13 @@ function getResortComments() {
 }
 
 function displayComment(i, item) {
-    console.log(i);
     var row = "<tr>";
-    row += "<td>" + i + "</td>";
     row += "<td>" + item.username + "</td>";
+    row += "<td>" + item.date + "</td>";
     row += "<td>" + item.comment + "</td>";
     row += "</td>";
 
+    console.log(row);
     $('#displayComment tr:first').after(row);
 }
 
@@ -34,11 +35,16 @@ function writeResortComments() {
         return;
     }
     var comment = $("#comment").val();
-    var time = new Date().getTime();
+    var date = new Date();
+    var id = date.getTime();
+    var dateString = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+    console.log(dateString)
 
-    firebase.database().ref(GLOBAL_RESORT_NUM + "/" + time).set({
+
+    firebase.database().ref(GLOBAL_RESORT_NUM + "/" + id).set({
         username: USERNAME,
-        comment: comment
+        comment: comment,
+        date: dateString
     });
 
     $("#comment").val("");

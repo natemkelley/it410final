@@ -70,7 +70,7 @@ function displayNameLogin(firebaseUser) {
     //googleSign.addClass('hide');
     //$("#register").addClass('hide');
     $(".form-signin").addClass('hide');
-
+    $('.comment-form').show();
 
     if (firebaseUser.displayName) {
         $('#loginDisplay').html('<span class="glyphicon glyphicon-log-in" style="margin-right:5px;"></span>' + firebaseUser.displayName);
@@ -88,6 +88,7 @@ function displayNoNameLogin() {
 
     $('#loginDisplay').html('<span class="glyphicon glyphicon-log-in" style="margin-right:5px;"></span>' + "Login/Register");
     localStorage.removeItem('idToken');
+    $('.comment-form').hide();
 }
 
 function getIDToken() {
@@ -100,7 +101,7 @@ function getIDToken() {
 }
 
 function setUserName(firebaseUser) {
-    if (firebaseUser.displayName != "") {
+    if (firebaseUser.displayName != null) {
         USERNAME = firebaseUser.displayName;
     } else {
         USERNAME = firebaseUser.email

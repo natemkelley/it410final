@@ -60,16 +60,21 @@
                     <div id="displayResort"></div>
                 </div>
 
-                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 row" id="imageGallery"></div>
+                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 row">
+                    <a href="#theImages" class="btn btn-primary" data-toggle="collapse" style="width: 100%; margin-top: 30px">Resort Maps</a>
+                    <div id="theImages" class="collapse">
+                        <div class="" id="imageGallery"></div>
+                    </div>
+                </div>
 
                 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-                    <a href="#theComments" class="btn btn-info" data-toggle="collapse" style="width: 100%; margin-top: 30px">Comment Box</a>
+                    <a href="#theComments" class="btn btn-primary" data-toggle="collapse" style="width: 100%; margin-top: 30px">Comment Box</a>
                     <div id="theComments" class="collapse">
-                        <form>
+                        <form class="comment-form" style='display: none'>
                             <div class="form-group">
                                 <label for="comment">Comment:</label>
                                 <textarea class="form-control" rows="5" id="comment"></textarea>
-                                <button type="button" class="btn btn-default comment-btn" onclick='writeResortComments()'>Button</button>
+                                <button type="button" class="btn btn-default comment-btn" onclick='writeResortComments()'>Submit</button>
                             </div>
                         </form>
 
@@ -88,10 +93,9 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="loginmodal modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

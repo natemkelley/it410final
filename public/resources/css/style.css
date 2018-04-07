@@ -46,7 +46,7 @@ img {
     background-repeat: no-repeat;
     background-size: auto;
     background-size: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),url('https://media.gettyimages.com/photos/matterhorn-at-night-picture-id149520728');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url('https://media.gettyimages.com/photos/matterhorn-at-night-picture-id149520728');
     margin-bottom: 40px;
     color: white;
     background-position: center;
@@ -57,13 +57,20 @@ img {
     margin: 30px auto;
 }
 
-.comment-btn{
+.comment-btn {
     float: right;
     margin-top: 7px;
+    margin-bottom: 7px;
 }
+
 .collapse.in {
     display: block;
     border: solid 1px #aaaaaa;
     padding: 15px;
     padding-bottom: 40px;
-    margin-top: 10px;}
+    margin-top: 10px;
+}
+
+#theImages {
+    border: none;
+}
