@@ -130,9 +130,6 @@ function replaceWithImages(data) {
     var dunzo = 0;
     var returnNow = false;
     var dummyVal = "https://media.giphy.com/media/4lSw7uVVULDhu/giphy.gif";
-
-
-    console.log(json.ski_maps)
     
     if (json.ski_maps.length < 1) {
         json.ski_maps[0] = {"id":dummyVal};

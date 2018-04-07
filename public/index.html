@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="resources/css/signin.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-    <script src="../resources/js/login.js"></script>
 </head>
 
 <body>
@@ -61,10 +60,14 @@
                     <div id="displayResort"></div>
                 </div>
 
-                <div class="row" id="imageGallery"></div>
+                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 row" id="imageGallery"></div>
 
-                <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
-                    <div id="chatBox"></div>
+                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+                    <a href="#demo" class="btn btn-info" data-toggle="collapse" style="width: 100%; margin-top: 30px">Comment Box</a>
+                    <div id="demo" class="collapse">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <div id="chatBox"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,8 +121,8 @@
 
 </body>
 
-
 <script src="../resources/js/jquery.min.js"></script>
+<script src="../resources/js/login.js"></script>
 <script src="../resources/js/bootstrap.min.js"></script>
 <script src="../resources/js/getResortAPI.js"></script>
 <script src="../resources/js/displayResort.js"></script>
