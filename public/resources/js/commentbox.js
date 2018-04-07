@@ -1,5 +1,6 @@
 //console.log('commentbox');
 var database = firebase.database();
+var resortArray = [];
 
 
 function getResortComments() {
@@ -7,8 +8,18 @@ function getResortComments() {
     console.log(GLOBAL_RESORT_NUM);
     
     resortComments.on('value', function (snapshot) {
-        console.log(snapshot.val())
+        $.each(snapshot.val(),function (i, item) {
+            if(resortArray.includes(i)){
+                return;
+            }
+            resortArray.push(i);
+            displayComment(i, item);
+        }) 
     });
+}
+
+function displayComment(i, item){
+    
 }
 
 function writeResortComments() {

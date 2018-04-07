@@ -136,7 +136,6 @@ function replaceWithImages(data) {
         return json;
     }
 
-
     return new Promise((resolve, reject) => {
         for (i = 0; i < length; i++) {
             var url = "https://skimap.org/SkiMaps/view/" + json.ski_maps[i].id + ".xml";
