@@ -37,7 +37,8 @@ function writeResortComments() {
     var comment = $("#comment").val();
     var date = new Date();
     var id = date.getTime();
-    var dateString = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+
+    var dateString = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
     console.log(dateString)
 
 

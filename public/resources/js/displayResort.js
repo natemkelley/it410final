@@ -60,9 +60,9 @@ function displayResort(datJSON) {
             case 'ski_maps':
                 return;
             case 'official_website':
-                table += "<tr><th>" + i + "</th>";
-
+                table += "<tr><th>" + "Official Website" + "</th>";
                 table += "<td><a>" + item + "</a></td></tr>";
+                return
             case 'regions':
                 table += "<tr><th>" + i + "</th><td>";
                 $.each(datJSON.regions, function (i, item) {
