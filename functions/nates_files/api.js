@@ -17,7 +17,6 @@ exports.compileRegions = function compileRegions(query) {
 
         var region = "undefined";
         var region_lower = "undefined";
-
         var website = "#";
 
         if (resorts.skiArea[i].regions) {

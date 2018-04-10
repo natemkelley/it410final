@@ -6,9 +6,9 @@ function getResortComments() {
 
     var resortComments = firebase.database().ref(GLOBAL_RESORT_NUM);
     resortArray = [];
-    console.log(resortArray);
 
     resortComments.on('value', function (snapshot) {
+        console.log(snapshot.val());
         $.each(snapshot.val(), function (i, item) {
             if (resortArray.includes(i)) {
                 return;
@@ -28,8 +28,6 @@ function writeResortComments() {
     var id = date.getTime();
 
     var dateString = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
-    console.log(dateString)
-
 
     firebase.database().ref(GLOBAL_RESORT_NUM + "/" + id).set({
         username: USERNAME,
@@ -47,6 +45,5 @@ function displayComment(i, item) {
     row += "<td>" + item.comment + "</td>";
     row += "</td>";
 
-    console.log(row);
     $('#displayComment tr:first').after(row);
 }
