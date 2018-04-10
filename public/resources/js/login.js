@@ -93,7 +93,6 @@ function displayNoNameLogin() {
 
 function getIDToken() {
     firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
-        //console.log(idToken);
         localStorage.setItem('idToken', idToken);
     }).catch(function (error) {
         console.error(error);

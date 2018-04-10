@@ -19,17 +19,6 @@ function getResortComments() {
     });
 }
 
-function displayComment(i, item) {
-    var row = "<tr>";
-    row += "<td>" + item.username + "</td>";
-    row += "<td>" + item.date + "</td>";
-    row += "<td>" + item.comment + "</td>";
-    row += "</td>";
-
-    console.log(row);
-    $('#displayComment tr:first').after(row);
-}
-
 function writeResortComments() {
     if ($("#comment").val().length < 1) {
         return;
@@ -49,4 +38,15 @@ function writeResortComments() {
     });
 
     $("#comment").val("");
+}
+
+function displayComment(i, item) {
+    var row = "<tr>";
+    row += "<td>" + item.username + "</td>";
+    row += "<td>" + item.date + "</td>";
+    row += "<td>" + item.comment + "</td>";
+    row += "</td>";
+
+    console.log(row);
+    $('#displayComment tr:first').after(row);
 }

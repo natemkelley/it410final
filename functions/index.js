@@ -33,7 +33,8 @@ app.get('/resorts/:id', (request, response) => {
                     return
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log(error);
+                    response.status(200).send(error);
                 });
 
             return
@@ -122,4 +123,3 @@ app.use(function (req, res, next) {
 });
 
 exports.app = functions.https.onRequest(app);
-
